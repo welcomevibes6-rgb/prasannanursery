@@ -178,10 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "f95.jpg", "f96.jpg", "f97.jpg", "f98.jpg", "f99.jpg"
     ];
 
-    for (let i = 161; i <= 189; i++) {
-        availableImages.push(`f${i}.jpg`);
-    }
-
     const categories = ['fruit', 'indoor', 'flowering', 'cactus', 'air', 'outdoor'];
     const plantGrid = document.getElementById('plant-grid');
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -189,8 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (plantGrid) {
         // Generate 189 cards
         for (let i = 0; i < 189; i++) {
-            // Cycle through available images
-            const imgSrc = availableImages[i % availableImages.length];
+            let imgSrc;
+            if (i < 160) {
+                // Keep the exact cycle for the first 160 plants
+                imgSrc = availableImages[i % availableImages.length];
+            } else {
+                // For new plants (161 to 189), use specific f-images directly
+                imgSrc = `f${i + 1}.jpg`;
+            }
 
             // Assign all plants to fruit category based on instructions
             let category = 'fruit';
