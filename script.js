@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --------------- LETTER ANIMATIONS ---------------
     function animateLetters(element) {
-        const htmlContent = element.innerHTML;
+        const htmlContent = element.innerHTML.replace(/&amp;/g, '&');
         element.innerHTML = '';
         const parts = htmlContent.split(/(<br\s*\/?>)/i);
 
@@ -178,13 +178,17 @@ document.addEventListener('DOMContentLoaded', () => {
         "f95.jpg", "f96.jpg", "f97.jpg", "f98.jpg", "f99.jpg"
     ];
 
+    for (let i = 161; i <= 189; i++) {
+        availableImages.push(`f${i}.jpg`);
+    }
+
     const categories = ['fruit', 'indoor', 'flowering', 'cactus', 'air', 'outdoor'];
     const plantGrid = document.getElementById('plant-grid');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
     if (plantGrid) {
-        // Generate 160 cards
-        for (let i = 0; i < 160; i++) {
+        // Generate 189 cards
+        for (let i = 0; i < 189; i++) {
             // Cycle through available images
             const imgSrc = availableImages[i % availableImages.length];
 
